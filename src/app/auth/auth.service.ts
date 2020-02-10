@@ -12,8 +12,11 @@ export class AuthService {
 
   login(email: string, password: string) {
     const authData = {email, password};
-    this.http.post<{token: string}>(environment.api + '/auth/login', authData).subscribe(
-      token => console.log(token)
+    this.http.post<{token: string, userId: string}>(environment.api + '/auth/login', authData).subscribe(
+      data => {
+        console.log('token: ' + data.token);
+        console.log('userId:  ' + data.userId);
+      }
     );
   }
 }
